@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class Livro {
     private static int idContadorLivro = 0;
-    private int idLivro;
+    private int id;
     private String titulo;
     private boolean disponivel;
     private LocalDate dataCadastro;
@@ -13,16 +13,20 @@ public class Livro {
 
     public Livro(Autor autor,String titulo,boolean disponivel,LocalDate dataCadastro){
     this.idContadorLivro++;
-    this.idLivro = idContadorLivro;
+    this.id = idContadorLivro;
     this.titulo = titulo;
     this.disponivel = disponivel;
     this.dataCadastro = dataCadastro;
     this.autor = autor;
     }
 
-    public Autor getAutor(){return autor;}
+    public Autor getAutor(){
+        return autor;
+    }
 
-    public int getIdLivro(){return idLivro;}
+    public int getId(){
+        return id;
+    }
 
     public void setTitulo(String titulo){
         this.titulo = titulo;

@@ -4,26 +4,28 @@ import java.time.LocalDate;
 
 public class Autor {
     private static int idAutorContador = 0;
-    private int idAutor;
-    private String nomeAutor;
+    private int id;
+    private String nome;
     private LocalDate dataNascimento;
 
 
-    public Autor(String nomeAutor,LocalDate dataNascimento){
+    public Autor(String nome, LocalDate dataNascimento){
         this.idAutorContador++;
-        this.idAutor = idAutorContador;
-        this.nomeAutor = nomeAutor;
+        this.id = idAutorContador;
+        this.nome = nome;
         this.dataNascimento = dataNascimento;
     }
 
-    public int getIdAutor(){return idAutor;}
-
-    public void setNomeAutor(String nomeAutor){
-        this.nomeAutor = nomeAutor;
+    public int getId(){
+        return id;
     }
 
-    public String getNomeAutor(){
-        return nomeAutor;
+    public void setNome(String nome){
+        this.nome = nome;
+    }
+
+    public String getNome(){
+        return nome;
     }
 
     public void setDataNascimento(LocalDate dataNascimento){
@@ -33,6 +35,4 @@ public class Autor {
     public LocalDate getDataNascimento(){
         return dataNascimento;
     }
-
-
 }

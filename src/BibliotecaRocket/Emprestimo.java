@@ -15,21 +15,36 @@ public class Emprestimo{
         this.ponteiroBiblioteca = biblioteca;
     }
 
+    private int escolhaLivro;
     public void escolherLivro(){
         System.out.println("insira seu nome para registro do emprestimo");
         Scanner scanner = new Scanner(System.in);
         nomeCliente = scanner.nextLine();
-        System.out.println("Qual livro deseja emprestar?");
-        int escolha = scanner.nextInt();
-        for(Livro i : ponteiroBiblioteca.getLivros()){
-            if(escolha == i.getIdLivro()) {
-                if (i.getDisponivel() == true) {
-                    System.out.println("o livro de id:" + i.getIdLivro() + " foi emprestado para " + getNomeCliente());
-                    i.setDisponivel(false);
+
+        while(true) {
+            System.out.println("Qual livro deseja emprestar?");
+            setEscolhaLivro(scanner.nextInt());
+            scanner.nextLine();
+
+            for (Livro i : ponteiroBiblioteca.getLivros()) {
+                if (getEscolhaLivro() == i.getId()) {
+                    if (i.getDisponivel() == true) {
+                        System.out.println("o livro de id:" + i.getId() + " foi emprestado para " + getNomeCliente());
+                        i.setDisponivel(false);
+                    } else {
+                        System.out.println("este livro não está disponível para empréstimo");
+                    }
                 }
-                else {
-                    System.out.println("este livro não está disponível para empréstimo");
-                }
+            }
+
+            System.out.println("deseja escolher outro livro?");
+            String EscolhaMaisLivro = scanner.nextLine();
+
+            if (EscolhaMaisLivro.equalsIgnoreCase("não")) {
+                break;
+            }
+            else{
+                ponteiroBiblioteca.imprimirLivros();
             }
         }
     }
@@ -53,4 +68,14 @@ public class Emprestimo{
     public void setDataDevolucao(LocalDate dataDevolucao){
         this.dataDevolucao = dataDevolucao;
     }
+
+    public void setEscolhaLivro(int escolhaLivro){
+        this.escolhaLivro = escolhaLivro;
+    }
+
+    public int getEscolhaLivro(){
+        return escolhaLivro;
+    }
+
 }
+
