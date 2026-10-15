@@ -1,11 +1,12 @@
 package BibliotecaRocket;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Emprestimo{
     private int idEmprestimo;
-    private String nomeCliente;
     private LocalDate dataEmprestimo;
     private LocalDate dataDevolucao;
     private Livro livro;
@@ -13,13 +14,15 @@ public class Emprestimo{
 
     public Emprestimo(Biblioteca biblioteca){
         this.ponteiroBiblioteca = biblioteca;
+        this.idEmprestimo++;
     }
 
+    private List<String> nomeCliente = new ArrayList();
     private int escolhaLivro;
     public void escolherLivro(){
         System.out.println("insira seu nome para registro do emprestimo");
         Scanner scanner = new Scanner(System.in);
-        nomeCliente = scanner.nextLine();
+        nomeCliente.add(scanner.nextLine());
 
         while(true) {
             System.out.println("Qual livro deseja emprestar?");
@@ -49,11 +52,11 @@ public class Emprestimo{
         }
     }
 
-    public void setNomeCliente(String nomeCliente){
+    public void setNomeCliente(List nomeCliente){
         this.nomeCliente = nomeCliente;
     }
 
-    public String getNomeCliente(){
+    public List getNomeCliente(){
         return nomeCliente;
     }
 

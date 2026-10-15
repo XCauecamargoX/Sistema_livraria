@@ -17,18 +17,30 @@ public class Biblioteca{
         return this.livros;
     }
 
+    public List <Autor> getAutores(){
+        return  this.autores;
+    }
+
     public Biblioteca(){
         montarAutores();
         montarLivros();
     }
 
-    public void montarAutores(){
+    public void adicionarAutores(Autor autor){
+        this.autores.add(autor);
+    }
+
+    public void adicionarLivros(Livro livro){
+        this.livros.add(livro);
+    }
+
+    private void montarAutores(){
         autores.add(new Autor("kleber", LocalDate.of(2005,05,15)));
         autores.add(new Autor("malfoy", LocalDate.of(2003,02,07)));
         autores.add(new Autor("lucia", LocalDate.of(2008,10,15)));
     }
 
-    public void montarLivros(){
+    private void montarLivros(){
         livros.add(new Livro(autores.get(0),"a vingança",true,LocalDate.of(2015,05,15)));
         livros.add(new Livro(autores.get(1),"desespero dos inocentes",true,LocalDate.of(2018,02,20)));
         livros.add(new Livro(autores.get(2),"a odisseia",true,LocalDate.of(2020,03,01)));
@@ -36,7 +48,7 @@ public class Biblioteca{
 
     public void imprimirAutores(){
         for (Autor i : autores){
-            System.out.println(i.getNome() + i.getDataNascimento() + " " + i.getId());
+            System.out.println(i.getNome() + " " + i.getDataNascimento() + " " + i.getId());
         }
     }
 
