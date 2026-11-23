@@ -2,6 +2,7 @@ package BibliotecaRocket;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class Cadastro {
@@ -17,17 +18,25 @@ public class Cadastro {
     }
 
     public void cadastrarAutores(){
-        System.out.println("digite o nome do autor");
-        String cadNomeAutor = scanner.nextLine();
-        System.out.println("digite a data de nascimento do autor");
-        String cadDataNascimentoAutor = scanner.nextLine();
+        while(true){
+            try{
+                System.out.println("digite o nome do autor");
+                String cadNomeAutor = scanner.nextLine();
+                System.out.println("digite a data de nascimento do autor");
+                String cadDataNascimentoAutor = scanner.nextLine();
 
-        DateTimeFormatter formatacao = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate cadDataNascimentoAutorFormat = LocalDate.parse(cadDataNascimentoAutor,formatacao);
-        Autor cadNovoAutor = new Autor(cadNomeAutor,cadDataNascimentoAutorFormat);
-        ponteiroBiblioteca.adicionarAutores(cadNovoAutor);
-        System.out.println("Autor cadastrado com sucesso!");
-        ponteiroBiblioteca.imprimirAutores();
+                DateTimeFormatter formatacao = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                LocalDate cadDataNascimentoAutorFormat = LocalDate.parse(cadDataNascimentoAutor,formatacao);
+                Autor cadNovoAutor = new Autor(cadNomeAutor,cadDataNascimentoAutorFormat);
+                ponteiroBiblioteca.adicionarAutores(cadNovoAutor);
+                System.out.println("Autor cadastrado com sucesso!");
+                ponteiroBiblioteca.imprimirAutores();
+                break;
+            }
+            catch(DateTimeParseException e){
+                System.out.println("formatação errada, digite o dia, mes e ano separado por \"/\"");
+            }
+        }
     }
 
     public void cadastrarLivros(){

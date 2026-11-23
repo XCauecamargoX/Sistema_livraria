@@ -1,7 +1,7 @@
 package BibliotecaRocket;
 
 import BibliotecaRocket.Excecao.NumeroNaoEncontradoException;
-
+import BibliotecaRocket.BancoLocalRocket.Gravador;
 import java.util.*;
 
 public class Menu {
@@ -10,6 +10,8 @@ public class Menu {
         Biblioteca menuBiblioteca = new Biblioteca();
         Emprestimo menuEmprestimo = new Emprestimo(menuBiblioteca);
         Cadastro menuCadastro = new Cadastro(menuEmprestimo,menuBiblioteca);
+        Gravador menuGravador = new Gravador(menuBiblioteca);
+
         List <Integer> opcoes = new ArrayList();
         Collections.addAll(opcoes,1,2,3);
 
@@ -52,7 +54,8 @@ public class Menu {
                 }
 
                 if(escolhaMenu == 3){
-                    System.out.println("saindo do sistema...");
+                    System.out.println("saindo do sistema e salvando informações...");
+                    menuGravador.escritaDeDados(menuGravador.conversorDeAutores(),menuGravador.conversorDeLivros());
                     break;
                 }
             }
